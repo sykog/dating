@@ -1,0 +1,7 @@
+/* Image Styles */
+div.jumbotron img {
+    position: fixed;
+    bottom: 0px;
+    left: 50%;
+    width: 40%;
+}
