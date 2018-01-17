@@ -1,7 +1,46 @@
-/* Image Styles */
+/* Body Styles */
+
+div.container {
+    width: 100%;
+}
+
+/* Header Styles */
+div.container header {
+    position: fixed;
+    width: 100%;
+    left: 0px;
+    background-color: deepskyblue;
+}
+
+header h1 {
+    padding: 8px;
+}
+
+/* Jumbotron Styles */
+div.jumbotron {
+    position: initial;
+    padding-right: 20%;
+    padding-top: 10%;
+}
+
 div.jumbotron img {
     position: fixed;
     bottom: 0px;
     left: 50%;
     width: 40%;
+}
+
+p#finePrint {
+    font-size: 10px;
+    font-style: italic;
+}
+
+/* Footer Styles*/
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    background-color: deepskyblue;
+    padding: 10px 40px 0px 0px;
+    border-radius: 0 20px 0 0px;
 }
