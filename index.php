@@ -16,7 +16,7 @@
         }
     );
 
-    //Define a form 1(order) route
+    //Define a form 1 route
     $f3->route('GET|POST /personal', function($f3, $params) {
             if(isset($_POST['submit'])){
                 $first = $_POST['first'];
@@ -44,6 +44,33 @@
 
             $template = new Template();
             echo $template->render('pages/form1.html');
+        }
+    );
+
+    //Define a form 2 route
+    $f3->route('GET|POST /profile', function($f3, $params) {
+            if(isset($_POST['submit'])){
+                $email = $_POST['email'];
+                $state = $_POST['state'];
+                $bio = $_POST['bio'];
+                $seeking = $_POST['seeking'];
+
+                $_SESSION['email'] = $email;
+                $_SESSION['state'] = $state;
+                $_SESSION['bio'] = $bio;
+                $_SESSION['seeking'] = $seeking;
+
+                include('model/validate.php');
+
+                $f3->set('emial', $email);
+                $f3->set('state', $state);
+                $f3->set('bio', $bio);
+                $f3->set('seeking', $seeking);
+            }
+
+            $template = new Template();
+            echo $template->render('pages/form2.html');
+            print_r($_SESSION);
         }
     );
 
