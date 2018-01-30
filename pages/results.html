@@ -13,7 +13,31 @@
         <div class="container">
             <header class="header clearfix">
                 <h1>Meet Some People</h1>
-            </header>
+            </header><br><br><br><br>
+
+            <div class="row">
+                <div id="summary" class="col-6">
+                    <p>Name: {{ @first }}  {{ @last }}</p>
+                    <p>Gender: {{ @gender }}</p>
+                    <p>Age: {{ @age }}</p>
+                    <p>Phone: {{ @phone }}</p>
+                    <p>Email: {{ @email }}</p>
+                    <p>State: {{ @state }}</p>
+                    <p>Seeking: {{ @seeking }}</p>
+                    <p>Interests:
+                        <repeat group = "{{ @indoor }}" value = "{{ @activity }}">{{ @activity }}  </repeat>
+                        <repeat group = "{{ @outdoor }}" value = "{{ @activity }}">{{ @activity }}  </repeat>
+
+                        </repeat>
+                    </repeat></p>
+                </div>
+
+                <div class="col-6">
+                    <img src="images/default.png" alt="default profile pic">
+                    <h4 id="bioHeader">Biography</h4>
+                    <p>{{ @bio }}</p>
+                </div>
+            </div>
 
             <a id="contact" class="btn btn-lg btn-primary" href="" role="button">Contact Me!</a>
 
