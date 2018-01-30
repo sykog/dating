@@ -12,6 +12,7 @@ div.container header {
     width: 100%;
     left: 0px;
     background-color: deepskyblue;
+    z-index: 10;
 }
 
 header h1 {
