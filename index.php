@@ -14,8 +14,8 @@
             "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
             "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont",
             "Virginia","Washington","West Virginia","Wisconsin","Wyoming"));
-    $f3->set('indoor', array( "tv", "movies", "cooking", "board games", "puzzles", "reading", "playing cards", "video games"));
-    $f3->set('outdoor', array( "hiking", "biking", "swimming", "collecting", "walking", "climbing"));
+    $f3->set('indoors', array( "tv", "movies", "cooking", "board games", "puzzles", "reading", "playing cards", "video games"));
+    $f3->set('outdoors', array( "hiking", "biking", "swimming", "collecting", "walking", "climbing"));
 
     // define a default route using a template
     $f3->route('GET /', function() {
@@ -84,8 +84,8 @@
     //Define a form 3 route
     $f3->route('GET|POST /interests', function($f3, $params) {
             if(isset($_POST['submit'])){
-                $indoor = $_POST['indoor'];
-                $outdoor = $_POST['outdoor'];
+                $indoor = $_POST['indoors'];
+                $outdoor = $_POST['outdoors'];
 
                 $_SESSION['indoor'] = $indoor;
                 $_SESSION['outoor'] = $outdoor;
@@ -98,6 +98,8 @@
 
             $template = new Template();
             echo $template->render('pages/form3.html');
+            echo "<br><br>";
+            print_r($_SESSION);
         }
     );
 

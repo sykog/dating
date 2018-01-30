@@ -22,9 +22,10 @@
             <form class="form" action="" method="post">
                 <label class="form-control-label">Indoor Interests</label>
                 <div class="form-check">
-                    <repeat group = "{{ @indoor }}" value = "{{ @activity }}">
+                    <repeat group = "{{ @indoors }}" value = "{{ @activity }}">
                         <div class="col-3 float-left">
-                            <label class="form-check-label"><input class="form-check-label" type="checkbox" name="indoor[]">
+                            <label class="form-check-label"><input class="form-check-label" type="checkbox" name="indoors[]"
+                                value="{{ @activity }}" <check if="in_array({{ @activity }}, {{ @indoor }})">checked</check>>
                                 {{ @activity }}
                             </label>
                         </div>
@@ -33,9 +34,10 @@
 
                 <label class="form-control-label">Outdoor Interests</label>
                 <div class="form-check">
-                    <repeat group = "{{ @outdoor }}" value = "{{ @activity }}">
+                    <repeat group = "{{ @outdoors }}" value = "{{ @activity }}">
                         <div class="col-3 float-left">
-                            <label class="form-check-label"><input class="form-check-label" type="checkbox" name="outdoor[]">
+                            <label class="form-check-label"><input class="form-check-label" type="checkbox" name="outdoors[]"
+                                value="{{ @activity }}" <check if="in_array({{ @activity }}, {{ @outdoor }})">checked</check>>
                                 {{ @activity }}
                             <label>
                         </div>
