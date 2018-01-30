@@ -17,7 +17,7 @@
     );
 
     //Define a form 1(order) route
-    $f3->route('GET /personal', function($f3, $params) {
+    $f3->route('GET|POST /personal', function($f3, $params) {
             $template = new Template();
             echo $template->render('pages/form1.html');
         }

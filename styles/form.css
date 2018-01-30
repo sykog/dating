@@ -1,0 +1,17 @@
+/* Header Styles */
+h2 {
+    padding-top: 8%;
+}
+
+/* Form Styles */
+label {
+    font-weight: bold;
+}
+
+input#first {
+    border-right: none;
+}
+
+.input-group-addon {
+    background-color: transparent;
+}
