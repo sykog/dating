@@ -8,6 +8,12 @@
     $f3 = Base::instance();
     // set debug level
     $f3->set('DEBUG', 3);
+    $f3->set('states', array( "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
+            "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
+            "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska",
+            "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio",
+            "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont",
+            "Virginia","Washington","West Virginia","Wisconsin","Wyoming"));
 
     // define a default route using a template
     $f3->route('GET /', function() {
@@ -62,7 +68,7 @@
 
                 include('model/validate.php');
 
-                $f3->set('emial', $email);
+                $f3->set('email', $email);
                 $f3->set('state', $state);
                 $f3->set('bio', $bio);
                 $f3->set('seeking', $seeking);
@@ -70,7 +76,6 @@
 
             $template = new Template();
             echo $template->render('pages/form2.html');
-            print_r($_SESSION);
         }
     );
 
