@@ -79,5 +79,25 @@
         }
     );
 
+    //Define a form 3 route
+    $f3->route('GET|POST /interests', function($f3, $params) {
+            if(isset($_POST['submit'])){
+                $indoor = $_POST['indoor'];
+                $outdoor = $_POST['outdoor'];
+
+                $_SESSION['indoor'] = $indoor;
+                $_SESSION['outoor'] = $outdoor;
+
+                include('model/validate.php');
+
+                $f3->set('indoor', $indoor);
+                $f3->set('outdoor', $indoor);
+            }
+
+            $template = new Template();
+            echo $template->render('pages/form3.html');
+        }
+    );
+
     // run fat free
     $f3->run();
