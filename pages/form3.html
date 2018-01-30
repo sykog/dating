@@ -20,11 +20,26 @@
             <hr>
 
             <form class="form" action="" method="post">
+                <label class="form-control-label">Indoor Interests</label>
                 <div class="form-check">
+                    <repeat group = "{{ @indoor }}" value = "{{ @activity }}">
+                        <div class="col-3 float-left">
+                            <label class="form-check-label"><input class="form-check-label" type="checkbox" name="indoor[]">
+                                {{ @activity }}
+                            </label>
+                        </div>
+                    </repeat>
+                </div>
 
-                    <label class="form-check-label">
-                        <input class="form-check-input" type="checkbox"> Abdominal pain
-                    </label>
+                <label class="form-control-label">Outdoor Interests</label>
+                <div class="form-check">
+                    <repeat group = "{{ @outdoor }}" value = "{{ @activity }}">
+                        <div class="col-3 float-left">
+                            <label class="form-check-label"><input class="form-check-label" type="checkbox" name="outdoor[]">
+                                {{ @activity }}
+                            <label>
+                        </div>
+                    </repeat>
                 </div>
 
                 <button id="next" class="btn btn-primary" type="submit" name="submit">Next ></button>

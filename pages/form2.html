@@ -28,9 +28,9 @@
 
                     <label class="form-control-label" for="state">State</label>
                     <select class="form-control" type="text" id="state" name="state">
-                        <repeat group = "{{ @states }}" value = "{{ @state }}">
-                            <option <check if="{{ @states == @state }}">selected</check>>
-                                {{ @state }}</option>
+                        <repeat group = "{{ @states }}" value = "{{ @stateOption }}">
+                            <option <check if="{{ @stateOption == @state }}">selected</check>>
+                                {{ @stateOption }}</option>
                         </repeat>
                     </select>
 
