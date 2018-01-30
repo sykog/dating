@@ -88,7 +88,7 @@
                 $outdoor = $_POST['outdoors'];
 
                 $_SESSION['indoor'] = $indoor;
-                $_SESSION['outoor'] = $outdoor;
+                $_SESSION['outdoor'] = $outdoor;
 
                 include('model/validate.php');
 
@@ -98,8 +98,12 @@
 
             $template = new Template();
             echo $template->render('pages/form3.html');
-            echo "<br><br>";
-            print_r($_SESSION);
+        }
+    );
+
+    $f3->route('POST /summary', function($f3, $params) {
+            $template = new Template();
+            echo $template->render('pages/results.html');
         }
     );
 
