@@ -52,6 +52,9 @@
 
             $template = new Template();
             echo $template->render('pages/form1.html');
+            if($success) {
+                $f3->reroute('/profile');
+            }
         }
     );
 
@@ -74,10 +77,15 @@
                 $f3->set('state', $state);
                 $f3->set('bio', $bio);
                 $f3->set('seeking', $seeking);
+                $f3->set('errors', $errors);
+                $f3->set('success', $success);
             }
 
             $template = new Template();
             echo $template->render('pages/form2.html');
+            if($success) {
+                $f3->reroute('/interests');
+            }
         }
     );
 
@@ -94,14 +102,31 @@
 
                 $f3->set('indoor', $indoor);
                 $f3->set('outdoor', $indoor);
+                $f3->set('errors', $errors);
+                $f3->set('success', $success);
             }
 
             $template = new Template();
             echo $template->render('pages/form3.html');
+            if($success) {
+                $f3->reroute('/summary');
+            }
         }
     );
 
-    $f3->route('POST /summary', function($f3, $params) {
+    $f3->route('GET|POST /summary', function($f3, $params) {
+            $f3->set('first', $_SESSION['first']);
+            $f3->set('last', $_SESSION['last']);
+            $f3->set('age', $_SESSION['age']);
+            $f3->set('gender', $_SESSION['gender']);
+            $f3->set('phone', $_SESSION['phone']);
+            $f3->set('email', $_SESSION['email']);
+            $f3->set('state', $_SESSION['state']);
+            $f3->set('seeking', $_SESSION['seeking']);
+            $f3->set('indoor', $_SESSION['indoor']);
+            $f3->set('outdoor', $_SESSION['outdoor']);
+            $f3->set('bio', $_SESSION['bio']);
+
             $template = new Template();
             echo $template->render('pages/results.html');
         }
