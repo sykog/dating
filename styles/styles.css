@@ -49,3 +49,21 @@ footer {
     padding: 10px 40px 0px 0px;
     border-radius: 0 20px 0 0px;
 }
+
+/* Summary Form Styles */
+a#contact {
+    display: block;
+    width: 140px;
+    margin: 10px auto;
+}
+
+div#summary p {
+    border: 1px solid #c8c8c8;
+    padding: 6px;
+    margin: 0px;
+    margin-top: -1px;
+}
+
+h4#bioHeader {
+    font-weight: normal;
+}
