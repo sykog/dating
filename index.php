@@ -1,8 +1,8 @@
 <?php
-    //Start the session
-    session_start();
     // require autoload file
     require_once('vendor/autoload.php');
+    //Start the session
+    session_start();
 
     // create instance of base class
     $f3 = Base::instance();
@@ -64,6 +64,7 @@
                 $f3->set('premium', $premium);
                 $f3->set('errors', $errors);
                 $f3->set('success', $success);
+                $f3->set('member', $member);
             }
 
             $template = new Template();
@@ -76,6 +77,8 @@
 
     //Define a form 2 route
     $f3->route('GET|POST /profile', function($f3, $params) {
+            $member = $_SESSION['member'];
+
             if(isset($_POST['submit'])){
                 $email = $_POST['email'];
                 $state = $_POST['state'];
@@ -95,12 +98,25 @@
                 $f3->set('seeking', $seeking);
                 $f3->set('errors', $errors);
                 $f3->set('success', $success);
+
+                $member->getEmail();
+                $member->getState();
+                $member->getSeeking();
+                $member->getBio();
             }
 
             $template = new Template();
             echo $template->render('pages/form2.html');
+            print_r($member);
             if($success) {
-                $f3->reroute('/interests');
+                // go to interests if premium member
+                if($member instanceof PremiumMember) {
+                   $f3->reroute('/interests');
+                }
+                // skip to summary if not premium
+                else {
+                    $f3->reroute('/summary');
+                }
             }
         }
     );
