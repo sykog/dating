@@ -24,12 +24,10 @@
                     <p>Email: {{ @email }}</p>
                     <p>State: {{ @state }}</p>
                     <p>Seeking: {{ @seeking }}</p>
-                    <p>Interests:
+                    <check if="{{ @member }} instanceof PremiumMember"><p>Interests:
                         <repeat group = "{{ @indoor }}" value = "{{ @activity }}">{{ @activity }}  </repeat>
                         <repeat group = "{{ @outdoor }}" value = "{{ @activity }}">{{ @activity }}  </repeat>
-
-                        </repeat>
-                    </repeat></p>
+                    </p></check>
                 </div>
 
                 <div class="col-6">

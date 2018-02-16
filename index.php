@@ -153,6 +153,7 @@
     );
 
     $f3->route('GET|POST /summary', function($f3, $params) {
+            $member = $_SESSION['member'];
             $f3->set('first', $_SESSION['first']);
             $f3->set('last', $_SESSION['last']);
             $f3->set('age', $_SESSION['age']);
@@ -164,6 +165,7 @@
             $f3->set('indoor', $_SESSION['indoor']);
             $f3->set('outdoor', $_SESSION['outdoor']);
             $f3->set('bio', $_SESSION['bio']);
+            $f3->set('member', $member);
 
             $template = new Template();
             echo $template->render('pages/results.html');
