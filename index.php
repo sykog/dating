@@ -32,20 +32,36 @@
                 $age = $_POST['age'];
                 $gender = $_POST['gender'];
                 $phone = $_POST['phone'];
+                $premium = $_POST['premium'];
 
                 $_SESSION['first'] = $first;
                 $_SESSION['last'] = $last;
                 $_SESSION['age'] = $age;
                 $_SESSION['gender'] = $gender;
                 $_SESSION['phone'] = $phone;
+                $_SESSION['premium'] = $premium;
 
                 include('model/validate.php');
+
+                // create PremiumMember object if selected
+                if(isset($_POST['premium'])) {
+                    $member = new PremiumMember($_SESSION['first'], $_SESSION['last'], $_SESSION['age'],
+                        $_SESSION['member'], $_SESSION['phone']);
+                    $_SESSION['member'] = $member;
+                }
+                // create Member object if not selected
+                else {
+                    $member = new Member($_SESSION['first'], $_SESSION['last'], $_SESSION['age'],
+                        $_SESSION['member'], $_SESSION['phone']);
+                    $_SESSION['member'] = $member;
+                }
 
                 $f3->set('first', $first);
                 $f3->set('last', $last);
                 $f3->set('age', $age);
                 $f3->set('gender', $gender);
                 $f3->set('phone', $phone);
+                $f3->set('premium', $premium);
                 $f3->set('errors', $errors);
                 $f3->set('success', $success);
             }
