@@ -98,16 +98,16 @@
                 $f3->set('seeking', $seeking);
                 $f3->set('errors', $errors);
                 $f3->set('success', $success);
+                $f3->set('member', $member);
 
-                $member->getEmail();
-                $member->getState();
-                $member->getSeeking();
-                $member->getBio();
+                $member->setEmail($email);
+                $member->setState($state);
+                $member->setSeeking($seeking);
+                $member->setBio($bio);
             }
 
             $template = new Template();
             echo $template->render('pages/form2.html');
-            print_r($member);
             if($success) {
                 // go to interests if premium member
                 if($member instanceof PremiumMember) {
@@ -123,6 +123,8 @@
 
     //Define a form 3 route
     $f3->route('GET|POST /interests', function($f3, $params) {
+            $member = $_SESSION['member'];
+
             if(isset($_POST['submit'])){
                 $indoor = $_POST['indoors'];
                 $outdoor = $_POST['outdoors'];
@@ -136,6 +138,10 @@
                 $f3->set('outdoor', $indoor);
                 $f3->set('errors', $errors);
                 $f3->set('success', $success);
+                $f3->set('member', $member);
+
+                $member->setIndoorInterests($indoor);
+                $member->setOutdoorInterests($outdoor);
             }
 
             $template = new Template();
