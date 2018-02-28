@@ -46,13 +46,13 @@
                 // create PremiumMember object if selected
                 if(isset($_POST['premium'])) {
                     $member = new PremiumMember($_SESSION['first'], $_SESSION['last'], $_SESSION['age'],
-                        $_SESSION['member'], $_SESSION['phone']);
+                        $_SESSION['gender'], $_SESSION['phone']);
                     $_SESSION['member'] = $member;
                 }
                 // create Member object if not selected
                 else {
                     $member = new Member($_SESSION['first'], $_SESSION['last'], $_SESSION['age'],
-                        $_SESSION['member'], $_SESSION['phone']);
+                        $_SESSION['gender'], $_SESSION['phone']);
                     $_SESSION['member'] = $member;
                 }
 
@@ -166,6 +166,21 @@
             $f3->set('outdoor', $_SESSION['outdoor']);
             $f3->set('bio', $_SESSION['bio']);
             $f3->set('member', $member);
+
+            $fname = $_SESSION['first'];
+            $interests = "";
+            $image = "";
+            $premium = 0;
+            if($member instanceof PremiumMember) {
+               $interests = implode(", ", $member->getIndoorInterests()).", ".implode(", ", $member->getOutdoorInterests());
+               $interests."<br>";
+               $premium = 1;
+            }
+            // create Member table using its object
+            $database = new Database();
+            $database->addMember($fname, $member->getLname(), $member->getAge(), $member->getGender(),
+                $member->getPhone(), $member->getEmail(), $member->getState(), $member->getSeeking(),
+                $member->getBio(), $premium, $image, $interests);
 
             $template = new Template();
             echo $template->render('pages/results.html');
