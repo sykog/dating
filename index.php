@@ -8,6 +8,7 @@
     $f3 = Base::instance();
     // set debug level
     $f3->set('DEBUG', 3);
+
     $f3->set('states', array( "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware",
             "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
             "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska",
@@ -173,17 +174,16 @@
             $premium = 0;
             if($member instanceof PremiumMember) {
                $interests = implode(", ", $member->getIndoorInterests()).", ".implode(", ", $member->getOutdoorInterests());
-               $interests."<br>";
                $premium = 1;
             }
             // create Member table using its object
+
+            $template = new Template();
+            echo $template->render('pages/results.html');
             $database = new Database();
             $database->addMember($fname, $member->getLname(), $member->getAge(), $member->getGender(),
                 $member->getPhone(), $member->getEmail(), $member->getState(), $member->getSeeking(),
                 $member->getBio(), $premium, $image, $interests);
-
-            $template = new Template();
-            echo $template->render('pages/results.html');
         }
     );
 
