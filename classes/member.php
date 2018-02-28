@@ -81,7 +81,7 @@
          */
         function getAge()
         {
-            return $this->age;
+           return $this->age;
         }
 
         /**
@@ -91,7 +91,10 @@
          */
         function setAge($age)
         {
-            $this->age = $age;
+            // must be a number
+            if (is_numeric($age)) {
+                $this->age = $age;
+            }
         }
 
         /**
@@ -129,7 +132,10 @@
          */
         function setPhone($phone)
         {
-            $this->phone = $phone;
+            // must be 9 characters
+            if (strlen($phone) == 9){
+                $this->phone = $phone;
+            }
         }
 
         /**
@@ -148,7 +154,10 @@
          */
         function setEmail($email)
         {
-            $this->email = $email;
+            // must contain an @ symbol
+            if (strpos($email, '@') !== false) {
+                $this->email = $email;
+            }
         }
 
         /**
