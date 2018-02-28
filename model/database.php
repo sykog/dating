@@ -85,4 +85,36 @@ class Database
         $statement->execute();
         $id = $dbh->lastInsertId();
     }
+
+    function printMembers()
+    {
+        $dbh = $this->dbh;
+        // Define the query
+        $sql = "SELECT * FROM Members ORDER BY lname";
+
+        // Prepare the statement
+        $statement = $dbh->prepare($sql);
+
+        // Execute the statement
+        $statement->execute();
+
+        // Process the result
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($result as $row) {
+            echo "<tr><td>" . $row['member_id'] . "</td>";
+            echo "<td>" . $row['fname'] . " " . $row['lname'] . "</td>";
+            echo "<td>" . $row['age'] . "</td>";
+            echo "<td>" . $row['phone'] . "</td>";
+            echo "<td>" . $row['email'] . "</td>";
+            echo "<td>" . $row['state'] . "</td>";
+            echo "<td>" . $row['gender'] . "</td>";
+            echo "<td>" . $row['seeking'] . "</td>";
+            if ($row['premium'] == 1) {
+                echo "<td><input id='checkBox' type='checkbox' checked></td>";
+            } else {
+                echo "<td><input id='checkBox' type='checkbox'></td>";
+            }
+            echo "<td>" . $row['interests'] . "</td></tr>";
+        }
+    }
 }

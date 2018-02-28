@@ -153,6 +153,7 @@
         }
     );
 
+    // define summary route
     $f3->route('GET|POST /summary', function($f3, $params) {
             $member = $_SESSION['member'];
             $f3->set('first', $_SESSION['first']);
@@ -184,6 +185,15 @@
             $database->addMember($fname, $member->getLname(), $member->getAge(), $member->getGender(),
                 $member->getPhone(), $member->getEmail(), $member->getState(), $member->getSeeking(),
                 $member->getBio(), $premium, $image, $interests);
+        }
+    );
+
+    // define member list route
+    $f3->route('GET /admin', function($f3, $params) {
+            $database = new Database();
+            $f3->set('database', $database);
+            $template = new Template();
+            echo $template->render('pages/memberlist.html');
         }
     );
 
